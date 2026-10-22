@@ -17,19 +17,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > ./StarkFit_APK_Final/local.properties
 
       - name: Make gradlew executable
         run: chmod +x ./StarkFit_APK_Final/gradlew
 
-      - name: Build APK
+      - name: Build Debug APK
         working-directory: ./StarkFit_APK_Final
-        run: |
-          ./gradlew assembleDebug --stacktrace --no-daemon
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         if: success()
