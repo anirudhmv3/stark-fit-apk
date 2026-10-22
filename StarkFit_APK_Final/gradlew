@@ -1,0 +1,8 @@
+#!/bin/sh
+# Simple wrapper - uses system gradle
+# This will be replaced by real wrapper on GitHub Actions
+if [ -f "./gradle/wrapper/gradle-wrapper.jar" ]; then
+  java -classpath ./gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain "$@"
+else
+  gradle "$@"
+fi
